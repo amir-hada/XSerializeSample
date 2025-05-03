@@ -12,7 +12,6 @@ namespace XSerializeSample
         {
             var product = new Product { Title = "Milk", Price = 29000 };
             dynamic pr = product;
-            var runCOde = pr.Serialize();
             Console.WriteLine(pr.Serialize());
 
         }
