@@ -1,4 +1,6 @@
+using System.Xml;
 using System.Xml.Linq;
+using System.Xml.Serialization;
 using Metalama.Framework.Aspects;
 using Metalama.Framework.Code;
 
@@ -22,14 +24,23 @@ public class XmlSerializableAttribute : TypeAspect
     public XElement SerializeTemplate()
     {
         var type = meta.Target.Type;
-        var element = new XElement(type.Name);
+        var xElement = new XElement(type.Name);
 
         foreach (var property in type.Properties)
         {
-            var value = property.Value; 
-            element.Add(new XElement(property.Name, value));
+            if (property.Attributes.OfAttributeType(typeof(XmlElementAttribute)).Any())
+            {
+                var value = property.Value;
+                xElement.Add(new XElement(property.Name, value));
+            }
+            else if (property.Attributes.OfAttributeType(typeof(XmlAttributeAttribute)).Any())
+            {
+                var value = property.Value;
+                xElement.SetAttributeValue(property.Name, value);
+            }
         }
 
-        return element;
+        return xElement;
     }
+
 }
