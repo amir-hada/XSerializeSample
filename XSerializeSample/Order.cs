@@ -4,10 +4,10 @@ namespace XSerializeSample;
 
 [XmlDeserialize]
 [XmlSerializable]
-public class Product
+public class Order
 {
     [XmlElement]
-    public string Title { get; set; }
+    public string? ProductTitle { get; set; }
     [XmlAttribute]
-    public string Price { get; set; }
+    public string? ProductPrice { get; set; }
 }
