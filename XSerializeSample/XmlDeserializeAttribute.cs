@@ -21,10 +21,10 @@ public class XmlDeserializeAttribute : TypeAspect
     }
     
     [Template]
-    public Product DeserializeTemplate(XElement input)
+    public object? DeserializeTemplate(XElement input)
     {
         var type = meta.Target.Type;
-        var product = new Product();
+        var newEntity = Activator.CreateInstance(meta.Target.GetType());
 
         foreach (var property in type.Properties)
         {
@@ -32,18 +32,18 @@ public class XmlDeserializeAttribute : TypeAspect
             {
                 var element = input.Element(property.Name);
                 //var value = Convert.ChangeType(element?.Value, property.GetType());
-                property.Value = element.Value;
+                property.Value = element?.Value;
 
             }
             else if (property.Attributes.OfAttributeType(typeof(XmlAttributeAttribute)).Any())
             {
                 var attribute = input.Attribute(property.Name);
                 //var value = Convert.ChangeType(attribute?.Value, property.GetType());
-                property.Value = attribute.Value;
+                property.Value = attribute?.Value;
             }
         }
 
-        return product;
+        return newEntity;
 
     }
     
