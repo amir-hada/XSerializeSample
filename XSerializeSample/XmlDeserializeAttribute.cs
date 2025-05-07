@@ -24,7 +24,7 @@ public class XmlDeserializeAttribute : TypeAspect
     public object? DeserializeTemplate(XElement input)
     {
         var type = meta.Target.Type;
-        var newEntity = Activator.CreateInstance(meta.Target.GetType());
+        var newEntity = Activator.CreateInstance(meta.This.GetType());
 
         foreach (var property in type.Properties)
         {
