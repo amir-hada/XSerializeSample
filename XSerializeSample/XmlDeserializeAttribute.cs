@@ -18,18 +18,14 @@ public class XmlDeserializeAttribute : TypeAspect
             buildMethod: options => 
             {
                 options.Name = "Deserialize";
-                options.ReturnType = builder.Target;
             });
     }
     
     [Template]
-    public object? DeserializeTemplate(XElement input)
+    public void DeserializeTemplate(XElement input)
     {
         var type = meta.Target.Type;
-        var currentType = meta.This.GetType();
-        //var newEntity = Activator.CreateInstance(meta.This.GetType());
-        //var newEntity = new { currentType };
-
+        
         foreach (var property in type.Properties)
         {
             if (property.Attributes.OfAttributeType(typeof(XmlElementAttribute)).Any())
@@ -45,7 +41,7 @@ public class XmlDeserializeAttribute : TypeAspect
             }
         }
 
-        return new object();
+        meta.Proceed();
 
     }
     
