@@ -18,6 +18,7 @@ public class XmlDeserializeAttribute : TypeAspect
             buildMethod: options => 
             {
                 options.Name = "Deserialize";
+                options.ReturnType = builder.Target;
             });
     }
     
@@ -27,26 +28,24 @@ public class XmlDeserializeAttribute : TypeAspect
         var type = meta.Target.Type;
         var currentType = meta.This.GetType();
         //var newEntity = Activator.CreateInstance(meta.This.GetType());
-        var newEntity = new { currentType };
+        //var newEntity = new { currentType };
 
         foreach (var property in type.Properties)
         {
             if (property.Attributes.OfAttributeType(typeof(XmlElementAttribute)).Any())
             {
                 var element = input.Element(property.Name);
-                //var value = Convert.ChangeType(element?.Value, property.GetType());
                 property.Value = element?.Value;
 
             }
             else if (property.Attributes.OfAttributeType(typeof(XmlAttributeAttribute)).Any())
             {
                 var attribute = input.Attribute(property.Name);
-                //var value = Convert.ChangeType(attribute?.Value, property.GetType());
                 property.Value = attribute?.Value;
             }
         }
 
-        return newEntity;
+        return new object();
 
     }
     
