@@ -3,6 +3,7 @@ using System.Xml.Linq;
 using System.Xml.Serialization;
 using Metalama.Framework.Aspects;
 using Metalama.Framework.Code;
+using Microsoft.VisualBasic.CompilerServices;
 
 namespace XSerializeSample;
 
@@ -24,7 +25,9 @@ public class XmlDeserializeAttribute : TypeAspect
     public object? DeserializeTemplate(XElement input)
     {
         var type = meta.Target.Type;
-        var newEntity = Activator.CreateInstance(meta.This.GetType());
+        var currentType = meta.This.GetType();
+        //var newEntity = Activator.CreateInstance(meta.This.GetType());
+        var newEntity = new { currentType };
 
         foreach (var property in type.Properties)
         {
