@@ -10,30 +10,15 @@ namespace XSerializeSample
     {
         static void Main(string[] args)
         {
-            var product = new Product { Title = "Milk", Price = "29000" };
             var order = new Order { ProductTitle = "Milk", ProductPrice = "29000" };
             
-            dynamic pr = product;
             dynamic ordr = order;
-            
-            var xml = pr.Serialize();
             var xmlOrder = ordr.Serialize();
-            
-            var newProduct = pr.Deserialize(xml);
-            var newOrder = ordr.Deserialize(xmlOrder);
-                
-
-            Console.WriteLine(xml);
-            Console.WriteLine(xmlOrder);
-
-            Console.WriteLine(newProduct);
-            Console.WriteLine(newOrder);
-            
-            Console.WriteLine(product.Title);
-            Console.WriteLine(product.Price);
-            
-            Console.WriteLine(order.ProductPrice);
+            order.ProductTitle = "Glass";
+            ordr.Deserialize(xmlOrder);
             Console.WriteLine(order.ProductTitle);
+            
+            
 
         }
     }
