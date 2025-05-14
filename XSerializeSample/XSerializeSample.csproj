@@ -6,6 +6,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <MetalamaEmitCompilerTransformedFiles>true</MetalamaEmitCompilerTransformedFiles>
+        <MetalamaDebugTransformedCode>True</MetalamaDebugTransformedCode>
         <MetalamaFormatOutput>true</MetalamaFormatOutput>
     </PropertyGroup>
 

@@ -1,3 +1,4 @@
+using System.Xml;
 using System.Xml.Serialization;
 
 namespace XSerializeSample;
@@ -10,4 +11,5 @@ public class Product
     public string Title { get; set; }
     [XmlAttribute]
     public string Price { get; set; }
+    
 }
