@@ -12,17 +12,23 @@ public class XmlDeserializeAttribute : TypeAspect
 {
     public override void BuildAspect(IAspectBuilder<INamedType> builder)
     {
-        builder.Advice.IntroduceMethod(
+        builder.Advice.IntroduceConstructor(
             builder.Target,
-            nameof(DeserializeTemplate),
-            buildMethod: options => 
-            {
-                options.Name = "Deserialize";
-            });
+            nameof(EmptyConstructorTemplate)
+        );
+        
+        builder.Advice.IntroduceConstructor(
+            builder.Target,
+            nameof(ConstructorTemplate)
+        );
     }
-    
     [Template]
-    public void DeserializeTemplate(XElement input)
+    public void EmptyConstructorTemplate()
+    {
+        
+    }
+    [Template]
+    public void ConstructorTemplate(XElement input)
     {
         var type = meta.Target.Type;
         
