@@ -26,7 +26,6 @@ public class XmlSerializableAttribute : TypeAspect
     [Template]
     public void OverrideSetter()
     {
-        //_xElement.SetElementValue(meta.Target.FieldOrProperty.Name, value);
         meta.InsertStatement($"_xElement.SetElementValue(\"{meta.Target.FieldOrProperty.Name}\", value);");
         meta.Proceed();
     }
