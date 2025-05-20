@@ -8,18 +8,5 @@ var emp = new Employee
     LastName = "Bolhasani"
 };
 
-Console.WriteLine(emp.EmployeeElement);
+Console.WriteLine(emp._xElement);
 
-var xElement = XElement.Parse("""
-                              <Employee>
-                              <ID>10</ID>
-                              <FirstName>Amir</FirstName>
-                              <LastName>Hadavand</LastName>
-                              </Employee>
-                              """);
-
-var deserializeEmp = new Employee(xElement);
-
-Console.WriteLine(deserializeEmp.ID);
-Console.WriteLine(deserializeEmp.FirstName);
-Console.WriteLine(deserializeEmp.LastName);
