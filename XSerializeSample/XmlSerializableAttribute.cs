@@ -3,44 +3,33 @@ using System.Xml.Linq;
 using System.Xml.Serialization;
 using Metalama.Framework.Aspects;
 using Metalama.Framework.Code;
+using Metalama.Framework.Code.SyntaxBuilders;
 
 namespace XSerializeSample;
 
 [AttributeUsage(AttributeTargets.Class)]
 public class XmlSerializableAttribute : TypeAspect
 {
+    [Introduce]
+    public XElement _xElement = XElement.Parse($"<{meta.Target.Type}></{meta.Target.Type}>");
     public override void BuildAspect(IAspectBuilder<INamedType> builder)
     {
-        builder.Advice.IntroduceMethod(
-            builder.Target,
-            nameof(SerializeTemplate),
-            buildMethod: options => 
-            {
-                options.Name = "Serialize";
-            });
-    }
-        
-    [Template]
-    public XElement SerializeTemplate()
-    {
-        var type = meta.Target.Type;
-        var xElement = new XElement(type.Name);
-
-        foreach (var property in type.Properties)
+        foreach (var property in builder.Target.Properties)
         {
-            if (property.Attributes.OfAttributeType(typeof(XmlElementAttribute)).Any())
-            {
-                var value = property.Value;
-                xElement.Add(new XElement(property.Name, value));
-            }
-            else if (property.Attributes.OfAttributeType(typeof(XmlAttributeAttribute)).Any())
-            {
-                var value = property.Value;
-                xElement.SetAttributeValue(property.Name, value);
-            }
+            builder.Advice.OverrideAccessors(
+                property,
+                null,
+                nameof(OverrideSetter));
         }
-
-        return xElement;
+        
     }
+    [Template]
+    public void OverrideSetter()
+    {
+        //_xElement.SetElementValue(meta.Target.FieldOrProperty.Name, value);
+        meta.InsertStatement($"_xElement.SetElementValue(\"{meta.Target.FieldOrProperty.Name}\", value);");
+        meta.Proceed();
+    }
+    
 
 }
