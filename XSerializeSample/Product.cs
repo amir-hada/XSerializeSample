@@ -9,7 +9,7 @@ public class Product
 {
     [XmlElement]
     public string Title { get; set; }
-    [XmlAttribute]
+    [XmlElement]
     public string Price { get; set; }
     
 }

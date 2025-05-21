@@ -8,6 +8,6 @@ public class Order
 {
     [XmlElement]
     public string? ProductTitle { get; set; }
-    [XmlAttribute]
+    [XmlElement]
     public string? ProductPrice { get; set; }
 }
