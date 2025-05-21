@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XSerializeSample", "XSerializeSample\XSerializeSample.csproj", "{CA7CFDC3-EA73-4C6B-B534-589C8ADC5CFB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTest.csproj", "{6EC66113-107A-43A5-BC02-78957889DBE4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{CA7CFDC3-EA73-4C6B-B534-589C8ADC5CFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA7CFDC3-EA73-4C6B-B534-589C8ADC5CFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA7CFDC3-EA73-4C6B-B534-589C8ADC5CFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EC66113-107A-43A5-BC02-78957889DBE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EC66113-107A-43A5-BC02-78957889DBE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EC66113-107A-43A5-BC02-78957889DBE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EC66113-107A-43A5-BC02-78957889DBE4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
