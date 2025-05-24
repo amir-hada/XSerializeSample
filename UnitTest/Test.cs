@@ -61,16 +61,10 @@ public class Test
 
         var inputXElement = XElement.Parse(stringXml);
         
-        var expectedProduct = new Product()
-        {
-            Title = "Milk",
-            Price = "29000"
-        };
-
         var product = new Product(inputXElement);
         
-        product.Title.ShouldBe(expectedProduct.Title);
-        product.Price.ShouldBe(expectedProduct.Price);
+        product.Title.ShouldBe("Milk");
+        product.Price.ShouldBe("29000");
         
         
 
@@ -87,17 +81,11 @@ public class Test
                         """;
         
         var inputXElement = XElement.Parse(stringXml);
-        
-        var expectedOrder = new Order()
-        {
-            ProductTitle = "Milk",
-            ProductPrice = "29000"
-        };
 
         var order = new Order(inputXElement);
         
-        order.ProductTitle.ShouldBe(expectedOrder.ProductTitle);
-        order.ProductPrice.ShouldBe(expectedOrder.ProductPrice);
+        order.ProductTitle.ShouldBe("Milk");
+        order.ProductPrice.ShouldBe("29000");
 
 
 
