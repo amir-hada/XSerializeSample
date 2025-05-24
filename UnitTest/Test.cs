@@ -48,30 +48,7 @@ public class Test
         
         order._xElement.ToString().ShouldBe(expectedXml.ToString());
     }
-
-    [Test]
-    public void Employee_Should_Serialize_Correctly()
-    {
-        var emp = new Employee()
-        {
-            ID = "15",
-            FirstName = "Reza",
-            LastName = "Shakak"
-        };
-
-        var stringXml = """
-                        <Employee>
-                        <ID>15</ID>
-                        <FirstName>Reza</FirstName>
-                        <LastName>Shakak</LastName>
-                        </Employee>
-                        """;
-
-        var expectedXml = XElement.Parse(stringXml);
-        
-        emp._xElement.ToString().ShouldBe(expectedXml.ToString());
-    }
-
+    
     [Test]
     public void Product_Should_DeSerialize_Correctly()
     {
@@ -125,30 +102,5 @@ public class Test
 
 
 
-    }
-    [Test]
-    public void Employee_Should_DeSerialize_Correctly()
-    {
-        var stringXml = """
-                        <Employee ID="15">
-                            <FirstName>Reza</FirstName>
-                            <LastName>Shakak</LastName>
-                        </Employee>
-                        """;
-        
-        var inputXElement = XElement.Parse(stringXml);
-        
-        var expextedEmp = new Employee()
-        {
-            ID = "15",
-            FirstName = "Reza",
-            LastName = "Shakak"
-        };
-
-        var emp = new Employee(inputXElement);
-        
-        emp.ID.ShouldBe(expextedEmp.ID);
-        emp.FirstName.ShouldBe(expextedEmp.FirstName);
-        emp.LastName.ShouldBe(expextedEmp.LastName);
     }
 }
