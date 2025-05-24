@@ -1,18 +1,54 @@
 using System.Xml.Linq;
-using System.Xml.Serialization;
 
 namespace XSerializeSample;
 
-[XmlDeserialize]
-[XmlSerializable]
 public class Employee
 {
-    [XmlAttribute]
-    public string ID { get; set; }
-    [XmlElement]
+    public XElement EmployeeElement = XElement.Parse("<Employee></Employee>");
 
-    public string FirstName { get; set; }
-    [XmlElement]
+    private int _id;
 
-    public string LastName { get; set; }
+    private string _lastName;
+
+    private string _firstName;
+    public int ID 
+    {
+        get => _id;
+        set
+        {
+            EmployeeElement.SetElementValue(nameof(ID), value);
+            _id = value;
+        }
+    }
+
+    public string FirstName
+    {
+        get => _firstName;
+        set
+        {
+            EmployeeElement.SetElementValue(nameof(FirstName), value);
+            _firstName = value;
+        }
+    }
+
+    public string LastName
+    {
+        get { return _lastName; }
+        set
+        {
+            EmployeeElement.SetElementValue(nameof(LastName), value);
+            _lastName = value;
+        }
+    }
+
+    public Employee()
+    {
+    }
+
+    public Employee(XElement input)
+    {
+        ID = Int32.Parse(input.Element("ID").Value);
+        FirstName = input.Element("FirstName").Value;
+        LastName = input.Element("LastName").Value;
+    }
 }
