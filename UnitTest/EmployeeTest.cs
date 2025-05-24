@@ -35,10 +35,9 @@ public class EmployeeTest
                   <Territory Name="Andishe"></Territory>
                   </Employee>
                   """;
-
         var emp = new Employee(XElement.Parse(xml));
 
-        emp.Node.Attribute("FirstName").Value.ShouldBe("Ali");
-        emp.Node.Element("Territory").Attribute("Name").Value.ShouldBe("Andishe");
+        emp.FirstName.ShouldBe("Ali");
+        emp.Territory.Name.ShouldBe("Andishe");
     }
 }

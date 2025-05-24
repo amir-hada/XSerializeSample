@@ -23,8 +23,7 @@ public partial class Territory
 
     public Territory(XElement input)
     {
-        Name = input.Attribute("Name")?.Value;
-        Description = input.Attribute("Description")?.Value;
+        Node = input;
     }
     
     public Territory()

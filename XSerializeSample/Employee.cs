@@ -1,3 +1,4 @@
+using System.Net.Http.Headers;
 using System.Xml.Linq;
 
 namespace XSerializeSample;
@@ -28,28 +29,25 @@ public  partial class Employee
 
     public Territory? Territory
     {
-        get => _territory;
+        get => new(Node.Element("Territory"));
         set
         {
-            if (value == null)
+            Node.Element(nameof(Territory))?.Remove();
+
+            if (value != null)
             {
-                _territory.Node.SetElementValue(nameof(Territory), null);
-                return;
+                _territory = value;
+                Node.Add(value.Node);
             }
-            _territory = value;
-            
-            Node.Add(_territory.Node);
         }
-    } 
+    }
+
     public Employee()
     {
     }
 
     public Employee(XElement input)
     {
-        ID = Int32.Parse(input.Attribute("ID")?.Value);
-        FirstName = input.Attribute("FirstName")?.Value;
-        LastName = input.Attribute("LastName")?.Value;
-        Territory = new Territory(input.Element("Territory"));
+        Node = input;
     }
 }
