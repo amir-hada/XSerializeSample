@@ -14,7 +14,8 @@ public class XmlDeserializeAttribute : TypeAspect
     {
         builder.Advice.IntroduceConstructor(
             builder.Target,
-            nameof(EmptyConstructorTemplate)
+            nameof(EmptyConstructorTemplate),
+            OverrideStrategy.Override
         );
         
         builder.Advice.IntroduceConstructor(

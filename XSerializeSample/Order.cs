@@ -6,6 +6,10 @@ namespace XSerializeSample;
 [XmlSerializable]
 public partial class Order
 {
+    public Order()
+    {
+    }
+
     [XmlElement]
     public string? ProductTitle { get; set; }
     [XmlElement]

@@ -7,6 +7,10 @@ namespace XSerializeSample;
 [XmlSerializable]
 public partial class Product
 {
+    public Product()
+    {
+    }
+
     [XmlElement]
     public string Title { get; set; }
     [XmlElement]
