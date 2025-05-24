@@ -20,10 +20,8 @@ public class Test
         var stringXml = """
                         <Product Title="Milk" Price="29000" />
                         """;
-
-        var expectedXml = XElement.Parse(stringXml);
         
-        prod._node.ToString().ShouldBe(expectedXml.ToString());
+        prod.Node.ToString().ShouldBe(stringXml);
     }
 
     [Test]
@@ -38,10 +36,8 @@ public class Test
         var stringXml = """
                         <Order ProductTitle="Milk" ProductPrice="29000" />
                         """;
-
-        var expectedXml = XElement.Parse(stringXml);
         
-        order._node.ToString().ShouldBe(stringXml);
+        order.Node.ToString().ShouldBe(stringXml);
     }
     
     [Test]
