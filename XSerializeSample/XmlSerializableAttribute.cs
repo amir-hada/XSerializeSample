@@ -1,6 +1,7 @@
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
+using Metalama.Framework.Advising;
 using Metalama.Framework.Aspects;
 using Metalama.Framework.Code;
 using Metalama.Framework.Code.SyntaxBuilders;
@@ -16,19 +17,20 @@ public class XmlSerializableAttribute : TypeAspect
     {
         foreach (var property in builder.Target.Properties)
         {
-            builder.Advice.OverrideAccessors(
-                property,
-                null,
-                nameof(OverrideSetter));
+            builder.With( property ).Override( nameof(this.OverrideSetter) );
         }
         
     }
     [Template]
-    public void OverrideSetter()
+    public dynamic OverrideSetter
     {
-        meta.InsertStatement($"_xElement.SetElementValue(\"{meta.Target.FieldOrProperty.Name}\", value);");
-        meta.Proceed();
+        set
+        {
+            _xElement.SetElementValue(meta.Target.FieldOrProperty.Name, value);
+            meta.Proceed();
+        }
     }
+    
     
 
 }
