@@ -4,41 +4,23 @@ namespace XSerializeSample;
 
 public  partial class Employee
 {
-    private XElement Node = XElement.Parse("<Employee></Employee>");
-
-    private int _id;
-
-    private string _lastName;
-
-    private string _firstName;
-    public int ID 
+    public XElement Node = XElement.Parse("<Employee></Employee>");
+    public int ID
     {
-        get => _id;
-        set
-        {
-            Node.SetElementValue(nameof(ID), value);
-            _id = value;
-        }
+        get => Convert.ToInt32(Node.Element(nameof(ID)).Value);
+        set => Node.SetElementValue(nameof(ID), value);
     }
 
-    public string FirstName
+    public string? FirstName
     {
-        get => _firstName;
-        set
-        {
-            Node.SetElementValue(nameof(FirstName), value);
-            _firstName = value;
-        }
+        get => Node.Element(nameof(FirstName))?.Value;
+        set => Node.SetElementValue(nameof(FirstName), value);
     }
 
-    public string LastName
+    public string? LastName
     {
-        get { return _lastName; }
-        set
-        {
-            Node.SetElementValue(nameof(LastName), value);
-            _lastName = value;
-        }
+        get => Node.Element(nameof(LastName))?.Value;
+        set => Node.SetElementValue(nameof(LastName), value);
     }
 
     public Employee()
