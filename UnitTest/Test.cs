@@ -25,7 +25,7 @@ public class Test
 
         var expectedXml = XElement.Parse(stringXml);
         
-        prod._xElement.ToString().ShouldBe(expectedXml.ToString());
+        prod._node.ToString().ShouldBe(expectedXml.ToString());
     }
 
     [Test]
@@ -46,7 +46,7 @@ public class Test
 
         var expectedXml = XElement.Parse(stringXml);
         
-        order._xElement.ToString().ShouldBe(expectedXml.ToString());
+        order._node.ToString().ShouldBe(expectedXml.ToString());
     }
     
     [Test]
