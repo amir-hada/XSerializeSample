@@ -8,7 +8,7 @@ namespace UnitTest;
 public class Test
 {
     [Test]
-    public void Product_Should_Serialize_Correctly()
+    public void ProductSerialize()
     {
         var prod = new Product()
         {
@@ -29,7 +29,7 @@ public class Test
     }
 
     [Test]
-    public void Order_Should_Serialize_Correctly()
+    public void OrderSerialize()
     {
         var order = new Order()
         {
@@ -50,7 +50,7 @@ public class Test
     }
     
     [Test]
-    public void Product_Should_DeSerialize_Correctly()
+    public void ProductDeSerialize()
     {
         var stringXml = """
                         <Product>
@@ -71,7 +71,7 @@ public class Test
 
     }
     [Test]
-    public void Order_Should_DeSerialize_Correctly()
+    public void OrderDeSerialize()
     {
         var stringXml = """
                         <Order>
