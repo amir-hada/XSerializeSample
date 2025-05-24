@@ -4,7 +4,7 @@ namespace XSerializeSample;
 
 public  partial class Employee
 {
-    public XElement EmployeeElement = XElement.Parse("<Employee></Employee>");
+    private XElement Node = XElement.Parse("<Employee></Employee>");
 
     private int _id;
 
@@ -16,7 +16,7 @@ public  partial class Employee
         get => _id;
         set
         {
-            EmployeeElement.SetElementValue(nameof(ID), value);
+            Node.SetElementValue(nameof(ID), value);
             _id = value;
         }
     }
@@ -26,7 +26,7 @@ public  partial class Employee
         get => _firstName;
         set
         {
-            EmployeeElement.SetElementValue(nameof(FirstName), value);
+            Node.SetElementValue(nameof(FirstName), value);
             _firstName = value;
         }
     }
@@ -36,7 +36,7 @@ public  partial class Employee
         get { return _lastName; }
         set
         {
-            EmployeeElement.SetElementValue(nameof(LastName), value);
+            Node.SetElementValue(nameof(LastName), value);
             _lastName = value;
         }
     }
