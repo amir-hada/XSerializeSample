@@ -5,7 +5,7 @@ namespace XSerializeSample;
 
 [XmlDeserialize]
 [XmlSerializable]
-public class Product
+public partial class Product
 {
     [XmlElement]
     public string Title { get; set; }

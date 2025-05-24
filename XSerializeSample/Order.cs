@@ -4,7 +4,7 @@ namespace XSerializeSample;
 
 [XmlDeserialize]
 [XmlSerializable]
-public class Order
+public partial class Order
 {
     [XmlElement]
     public string? ProductTitle { get; set; }

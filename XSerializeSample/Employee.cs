@@ -2,7 +2,7 @@ using System.Xml.Linq;
 
 namespace XSerializeSample;
 
-public class Employee
+public  partial class Employee
 {
     public XElement EmployeeElement = XElement.Parse("<Employee></Employee>");
 
