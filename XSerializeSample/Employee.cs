@@ -5,32 +5,51 @@ namespace XSerializeSample;
 public  partial class Employee
 {
     public XElement Node = XElement.Parse("<Employee></Employee>");
+
+    private Territory _territory = new();
+    
     public int ID
     {
         get => Convert.ToInt32(Node.Element(nameof(ID)).Value);
-        set => Node.SetElementValue(nameof(ID), value);
+        set => Node.SetAttributeValue(nameof(ID), value);
     }
 
     public string? FirstName
     {
-        get => Node.Element(nameof(FirstName))?.Value;
-        set => Node.SetElementValue(nameof(FirstName), value);
+        get => Node.Attribute(nameof(FirstName))?.Value;
+        set => Node.SetAttributeValue(nameof(FirstName), value);
     }
 
     public string? LastName
     {
-        get => Node.Element(nameof(LastName))?.Value;
-        set => Node.SetElementValue(nameof(LastName), value);
+        get => Node.Attribute(nameof(LastName))?.Value;
+        set => Node.SetAttributeValue(nameof(LastName), value);
     }
 
+    public Territory? Territory
+    {
+        get => _territory;
+        set
+        {
+            if (value == null)
+            {
+                _territory.Node.SetElementValue(nameof(Territory), null);
+                return;
+            }
+            _territory = value;
+            
+            Node.Add(_territory.Node);
+        }
+    } 
     public Employee()
     {
     }
 
     public Employee(XElement input)
     {
-        ID = Int32.Parse(input.Element("ID").Value);
-        FirstName = input.Element("FirstName").Value;
-        LastName = input.Element("LastName").Value;
+        ID = Int32.Parse(input.Attribute("ID")?.Value);
+        FirstName = input.Attribute("FirstName")?.Value;
+        LastName = input.Attribute("LastName")?.Value;
+        Territory = new Territory(input.Element("Territory"));
     }
 }
