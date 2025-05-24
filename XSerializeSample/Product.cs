@@ -11,9 +11,9 @@ public partial class Product
     {
     }
 
-    [XmlElement]
+    [XmlAttribute]
     public string Title { get; set; }
-    [XmlElement]
+    [XmlAttribute]
     public string Price { get; set; }
     
 }

@@ -1,3 +1,4 @@
+using System.Xml;
 using System.Xml.Linq;
 using NUnit.Framework;
 using Shouldly;
@@ -17,10 +18,7 @@ public class Test
         };
 
         var stringXml = """
-                        <Product>
-                        <Title>Milk</Title>
-                        <Price>29000</Price>
-                        </Product>
+                        <Product Title="Milk" Price="29000" />
                         """;
 
         var expectedXml = XElement.Parse(stringXml);
@@ -38,25 +36,19 @@ public class Test
         };
 
         var stringXml = """
-                        <Order>
-                        <ProductTitle>Milk</ProductTitle>
-                        <ProductPrice>29000</ProductPrice>
-                        </Order>
+                        <Order ProductTitle="Milk" ProductPrice="29000" />
                         """;
 
         var expectedXml = XElement.Parse(stringXml);
         
-        order._node.ToString().ShouldBe(expectedXml.ToString());
+        order._node.ToString().ShouldBe(stringXml);
     }
     
     [Test]
     public void ProductDeSerialize()
     {
         var stringXml = """
-                        <Product>
-                        <Title>Milk</Title>
-                        <Price>29000</Price>
-                        </Product>
+                        <Product Title="Milk" Price="29000" />
                         """;
 
         var inputXElement = XElement.Parse(stringXml);
@@ -66,18 +58,12 @@ public class Test
         product.Title.ShouldBe("Milk");
         product.Price.ShouldBe("29000");
         
-        
-
-
     }
     [Test]
     public void OrderDeSerialize()
     {
         var stringXml = """
-                        <Order>
-                        <ProductTitle>Milk</ProductTitle>
-                        <ProductPrice>29000</ProductPrice>
-                        </Order>
+                        <Order ProductTitle="Milk" ProductPrice="29000" />
                         """;
         
         var inputXElement = XElement.Parse(stringXml);

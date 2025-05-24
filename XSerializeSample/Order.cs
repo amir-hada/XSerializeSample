@@ -10,8 +10,8 @@ public partial class Order
     {
     }
 
-    [XmlElement]
+    [XmlAttribute]
     public string? ProductTitle { get; set; }
-    [XmlElement]
+    [XmlAttribute]
     public string? ProductPrice { get; set; }
 }

@@ -12,7 +12,7 @@ namespace XSerializeSample;
 public class XmlSerializableAttribute : TypeAspect
 {
     [Introduce]
-    public XElement _node = XElement.Parse($"<{meta.Target.Type}></{meta.Target.Type}>");
+    public XElement _node = XElement.Parse($"<{meta.Target.Type}/>");
     public override void BuildAspect(IAspectBuilder<INamedType> builder)
     {
         foreach (var property in builder.Target.Properties)
@@ -26,7 +26,7 @@ public class XmlSerializableAttribute : TypeAspect
     {
         set
         {
-            _node.SetElementValue(meta.Target.FieldOrProperty.Name, value);
+            _node.SetAttributeValue(meta.Target.FieldOrProperty.Name, value);
             meta.Proceed();
         }
     }
